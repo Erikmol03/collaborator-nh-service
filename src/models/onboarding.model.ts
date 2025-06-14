@@ -36,6 +36,10 @@ Onboarding.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    date_technical_onboarding: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   },
   {
     sequelize,
