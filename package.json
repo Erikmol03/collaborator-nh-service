@@ -1,0 +1,21 @@
+{
+  "name": "collaborator-prod-service",
+  "version": "1.0.0",
+  "description": "Microservicio de la apliación NovaHire enfocado en la CRUD y dashboard del colaborador.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erikmol03/collaborator-prod-service.git"
+  },
+  "keywords": [],
+  "author": "Erik Molina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Erikmol03/collaborator-prod-service/issues"
+  },
+  "homepage": "https://github.com/Erikmol03/collaborator-prod-service#readme"
+}
