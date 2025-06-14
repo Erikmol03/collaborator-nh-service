@@ -20,7 +20,7 @@ exports.sequelize = new sequelize_1.Sequelize(process.env.DB_SCHEMA, process.env
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
     dialect: "mysql",
-    logging: false
+    logging: false,
 });
 const testConnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
