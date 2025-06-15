@@ -28,7 +28,6 @@ export const getAllInfoFromCollaboratorController = async (
 ) => {
   try {
     const collaboratorData = await getAllInfoFromCollaboratorService();
-    console.log("Info de la view", collaboratorData);
     res.status(200).json(collaboratorData);
   } catch (error) {
     res.status(404).json({
