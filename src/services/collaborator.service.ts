@@ -1,5 +1,11 @@
 import { Collaborator } from "../models/collaborator.model";
 import { CollaboratorView } from "../views/collaborator.view";
+import { TechnicalOnboardingView } from "../views/techOnboardingDate.view";
+
+type Reminder = {
+  email: string;
+  date: Date;
+};
 
 export const createCollaboratorService = async (data: Collaborator) => {
   const newCollaborator = await Collaborator.create(data);
@@ -9,6 +15,15 @@ export const createCollaboratorService = async (data: Collaborator) => {
 export const getAllInfoFromCollaboratorService = async () => {
   const collaboratorData = await CollaboratorView.findAll();
   return collaboratorData;
+};
+
+export const getUserToReminderTechOnboarding = async () => {
+  const dateTechOnboarding = await TechnicalOnboardingView.findAll();
+  const reminders: Reminder[] = dateTechOnboarding.map((record) => ({
+    email: record.email,
+    date: record.date_technical_onboarding,
+  }));
+  return reminders;
 };
 
 export const findAllColaboratorService = async () => {

@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCollaboratorService = exports.updateCollaboratorService = exports.findAllColaboratorService = exports.getAllInfoFromCollaboratorService = exports.createCollaboratorService = void 0;
+exports.deleteCollaboratorService = exports.updateCollaboratorService = exports.findAllColaboratorService = exports.getUserToReminderTechOnboarding = exports.getAllInfoFromCollaboratorService = exports.createCollaboratorService = void 0;
 const collaborator_model_1 = require("../models/collaborator.model");
 const collaborator_view_1 = require("../views/collaborator.view");
+const techOnboardingDate_view_1 = require("../views/techOnboardingDate.view");
 const createCollaboratorService = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const newCollaborator = yield collaborator_model_1.Collaborator.create(data);
     return newCollaborator;
@@ -22,6 +23,15 @@ const getAllInfoFromCollaboratorService = () => __awaiter(void 0, void 0, void 0
     return collaboratorData;
 });
 exports.getAllInfoFromCollaboratorService = getAllInfoFromCollaboratorService;
+const getUserToReminderTechOnboarding = () => __awaiter(void 0, void 0, void 0, function* () {
+    const dateTechOnboarding = yield techOnboardingDate_view_1.TechnicalOnboardingView.findAll();
+    const reminders = dateTechOnboarding.map((record) => ({
+        email: record.email,
+        date: record.date_technical_onboarding,
+    }));
+    return reminders;
+});
+exports.getUserToReminderTechOnboarding = getUserToReminderTechOnboarding;
 const findAllColaboratorService = () => __awaiter(void 0, void 0, void 0, function* () {
     const findAllCollaborator = yield collaborator_model_1.Collaborator.findAll();
     return findAllCollaborator;

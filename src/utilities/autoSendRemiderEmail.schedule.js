@@ -8,17 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateOnboardingService = exports.createOnboardingService = void 0;
-const onboarding_model_1 = require("../models/onboarding.model");
-const createOnboardingService = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const newOnborading = yield onboarding_model_1.Onboarding.create(data);
-    return newOnborading;
-});
-exports.createOnboardingService = createOnboardingService;
-const updateOnboardingService = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
-    yield onboarding_model_1.Onboarding.update(data, { where: { id_onboarding: id } });
-    const message = "Estado del onboarding actualizado";
-    return message;
-});
-exports.updateOnboardingService = updateOnboardingService;
+const node_cron_1 = __importDefault(require("node-cron"));
+const mail_service_1 = require("../services/mail.service");
+const collaborator_service_1 = require("../services/collaborator.service");
+node_cron_1.default.schedule("* * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("⏰ Ejecutando tarea de recordatorio...");
+    const sessions = yield (0, collaborator_service_1.getUserToReminderTechOnboarding)(); // Busca sesiones en 7 días
+    for (const session of sessions) {
+        yield (0, mail_service_1.sendTechnicalOnboardingReminder)(session.email, session.date);
+    }
+}));

@@ -11,9 +11,8 @@ const verifyToken = (req, res, next) => {
         res.status(403).json({ message: "Token no proporcionado" });
         return;
     }
-    const token = authHeader.split("")[1];
     try {
-        const tokenDecoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+        const tokenDecoded = jsonwebtoken_1.default.verify(authHeader, process.env.JWT_SECRET);
         next();
     }
     catch (error) {

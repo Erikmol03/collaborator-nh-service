@@ -13,10 +13,11 @@ export const verifyToken = (
     return;
   }
 
-  const token = authHeader.split("")[1];
-
   try {
-    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    const tokenDecoded = jwt.verify(
+      authHeader,
+      process.env.JWT_SECRET as string
+    );
     next();
   } catch (error) {
     res.status(403).json({ message: "Token invalido o expirado" });
