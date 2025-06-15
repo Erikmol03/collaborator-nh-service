@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../middleware/auth.middleware";
 import {
   createTechnicalOnboardingController,
   updateTechnicalOnboardingController,
@@ -6,7 +7,12 @@ import {
 
 const router = express.Router();
 
-router.post("/create/onboarding", createTechnicalOnboardingController);
-router.patch("/update/onboarding/:id", updateTechnicalOnboardingController);
+router.use("tech-onboarding", verifyToken);
+
+router.post("/tech-onboarding/create", createTechnicalOnboardingController);
+router.patch(
+  "/tech-onboarding/update/:id",
+  updateTechnicalOnboardingController
+);
 
 export default router;

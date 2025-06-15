@@ -1,6 +1,6 @@
 import app from "./src/app/app";
 import { testConnection } from "./src/db/data_base_conection";
-import { TechnicalOnboarding } from "./src/models/technical_onboarding.model";
+import { generateToken } from "./src/utilities/generateToken";
 
 const PORT = process.env.PORT || 3001;
 
@@ -9,3 +9,4 @@ app.listen(PORT, () => {
 });
 
 testConnection();
+generateToken();

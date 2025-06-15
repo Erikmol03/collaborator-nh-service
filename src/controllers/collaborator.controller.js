@@ -25,7 +25,6 @@ const createCollaboratorController = (req, res) => __awaiter(void 0, void 0, voi
 });
 exports.createCollaboratorController = createCollaboratorController;
 const getAllInfoFromCollaboratorController = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Entro al controller");
     try {
         const collaboratorData = yield (0, collaborator_service_1.getAllInfoFromCollaboratorService)();
         console.log("Info de la view", collaboratorData);

@@ -19,7 +19,6 @@ const createCollaboratorService = (data) => __awaiter(void 0, void 0, void 0, fu
 exports.createCollaboratorService = createCollaboratorService;
 const getAllInfoFromCollaboratorService = () => __awaiter(void 0, void 0, void 0, function* () {
     const collaboratorData = yield collaborator_view_1.CollaboratorView.findAll();
-    console.log("Info de la view", collaboratorData);
     return collaboratorData;
 });
 exports.getAllInfoFromCollaboratorService = getAllInfoFromCollaboratorService;

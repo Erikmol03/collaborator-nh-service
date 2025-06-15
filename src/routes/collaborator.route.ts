@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../middleware/auth.middleware";
 import {
   createCollaboratorController,
   getAllInfoFromCollaboratorController,
@@ -9,10 +10,12 @@ import {
 
 const router = express.Router();
 
-router.post("/create/collaborator", createCollaboratorController);
-router.get("/data/collaborator", getAllInfoFromCollaboratorController);
-router.get("/find/collaborator", findAllColaboratorController);
-router.patch("/update/collaborator/:id", updateCollaboratorController);
-router.delete("/delete/collaborator/:id", deleteCollaboratorController);
+router.use("/collaborator", verifyToken);
+
+router.post("/collaborator/create", createCollaboratorController);
+router.get("/collaborator/data", getAllInfoFromCollaboratorController);
+router.get("/collaborator/find", findAllColaboratorController);
+router.patch("/collaborator/update/:id", updateCollaboratorController);
+router.delete("/collaborator/delete/:id", deleteCollaboratorController);
 
 export default router;
