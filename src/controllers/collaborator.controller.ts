@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createCollaboratorService,
+  getAllInfoFromCollaboratorService,
   findAllColaboratorService,
   updateCollaboratorService,
   deleteCollaboratorService,
@@ -13,22 +14,41 @@ export const createCollaboratorController = async (
   try {
     const newCollaborator = await createCollaboratorService(req.body);
     res.status(201).json(newCollaborator);
-  } catch (error: any) {
+  } catch (error) {
     res.status(400).json({
       message: "Ocurrio un error al procesar la solicitud",
-      error: error.message,
+      error: error,
     });
   }
 };
 
-export const findAllColaboratorController = async (res: Response) => {
+export const getAllInfoFromCollaboratorController = async (
+  _req: Request,
+  res: Response
+) => {
+  try {
+    const collaboratorData = await getAllInfoFromCollaboratorService();
+    console.log("Info de la view", collaboratorData);
+    res.status(200).json(collaboratorData);
+  } catch (error) {
+    res.status(404).json({
+      message: "No se encontraron colaboradores",
+      error: error,
+    });
+  }
+};
+
+export const findAllColaboratorController = async (
+  _req: Request,
+  res: Response
+) => {
   try {
     const collaboratorsFound = await findAllColaboratorService();
     res.status(200).json(collaboratorsFound);
   } catch (error) {
     res.status(404).json({
       message: "No se han encontrado colaboradores",
-      error: error.message,
+      error: error,
     });
   }
 };
@@ -46,7 +66,7 @@ export const updateCollaboratorController = async (
   } catch (error) {
     res.status(400).json({
       message: "Ocurrio un error al procesar la solicitud",
-      error: error.message,
+      error: error,
     });
   }
 };
@@ -61,9 +81,9 @@ export const deleteCollaboratorController = async (
     );
     res.status(200).json(deletedCollaborator);
   } catch (error) {
-    res.status(400).json({
+    res.status(404).json({
       message: "Ocurrio un error al procesar la solicitud",
-      error: error.message,
+      error: error,
     });
   }
 };

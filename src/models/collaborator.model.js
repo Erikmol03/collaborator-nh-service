@@ -16,7 +16,7 @@ Collaborator.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: "onboarding",
+            model: "technical_onboarding",
             key: "id_onboarding",
         },
     },
@@ -35,5 +35,9 @@ Collaborator.init({
     date_entry: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
+    },
+    state_welcome_onboarding: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        defaultValue: false,
     },
 }, { sequelize: data_base_conection_1.sequelize, tableName: "collaborator", timestamps: false });

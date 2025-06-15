@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createCollaboratorController,
+  getAllInfoFromCollaboratorController,
   findAllColaboratorController,
   updateCollaboratorController,
   deleteCollaboratorController,
@@ -8,9 +9,10 @@ import {
 
 const router = express.Router();
 
-router.post("/collaborator", createCollaboratorController);
-router.get("/collaborator", findAllColaboratorController);
-router.patch("/collaborator", updateCollaboratorController);
-router.delete("/collaborator", deleteCollaboratorController);
+router.post("/create/collaborator", createCollaboratorController);
+router.get("/data/collaborator", getAllInfoFromCollaboratorController);
+router.get("/find/collaborator", findAllColaboratorController);
+router.patch("/update/collaborator/:id", updateCollaboratorController);
+router.delete("/delete/collaborator/:id", deleteCollaboratorController);
 
 export default router;

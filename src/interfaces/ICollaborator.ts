@@ -4,5 +4,6 @@ interface CollaboratorAttributes {
   first_name: String;
   last_name: String;
   email: String;
-  date_entry: String;
+  date_entry: Date;
+  state_welcome_onboarding: boolean;
 }

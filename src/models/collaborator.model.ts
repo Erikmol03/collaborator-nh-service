@@ -3,7 +3,7 @@ import { sequelize } from "../db/data_base_conection";
 
 type CollaboratorOptionalAttributes = Optional<
   CollaboratorAttributes,
-  "id_onboarding"
+  "id_collaborator"
 >;
 
 export class Collaborator
@@ -15,7 +15,8 @@ export class Collaborator
   first_name!: String;
   last_name!: String;
   email!: String;
-  date_entry!: String;
+  date_entry!: Date;
+  state_welcome_onboarding!: boolean;
 }
 
 Collaborator.init(
@@ -29,7 +30,7 @@ Collaborator.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "onboarding",
+        model: "technical_onboarding",
         key: "id_onboarding",
       },
     },
@@ -48,6 +49,10 @@ Collaborator.init(
     date_entry: {
       type: DataTypes.DATE,
       allowNull: false,
+    },
+    state_welcome_onboarding: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   { sequelize, tableName: "collaborator", timestamps: false }

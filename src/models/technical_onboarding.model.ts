@@ -1,38 +1,36 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../db/data_base_conection";
 
-type OnboardingOptionalAttributes = Optional<
-  OnboardingAttributes,
+type TechnicalOnboardingOptionalAttributes = Optional<
+  TechnicalOnboardingAttributes,
   "id_onboarding"
 >;
 
-export class Onboarding
-  extends Model<OnboardingAttributes, OnboardingOptionalAttributes>
-  implements OnboardingAttributes
+export class TechnicalOnboarding
+  extends Model<
+    TechnicalOnboardingAttributes,
+    TechnicalOnboardingOptionalAttributes
+  >
+  implements TechnicalOnboardingAttributes
 {
   public id_onboarding!: number;
-  public state_welcome_onboarding!: boolean;
   public state_technical_onboarding!: boolean;
-  public type_technical_onboarading!: string;
+  public type_technical_onboarding!: string;
   public date_technical_onboarding?: Date;
 }
 
-Onboarding.init(
+TechnicalOnboarding.init(
   {
     id_onboarding: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    state_welcome_onboarding: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
     state_technical_onboarding: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    type_technical_onboarading: {
+    type_technical_onboarding: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -43,7 +41,7 @@ Onboarding.init(
   },
   {
     sequelize,
-    tableName: "onboarding",
+    tableName: "technical_onboarding",
     timestamps: false,
   }
 );

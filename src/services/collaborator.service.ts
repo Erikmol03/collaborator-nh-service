@@ -1,8 +1,14 @@
 import { Collaborator } from "../models/collaborator.model";
+import { CollaboratorView } from "../views/collaborator.view";
 
 export const createCollaboratorService = async (data: Collaborator) => {
   const newCollaborator = await Collaborator.create(data);
   return newCollaborator;
+};
+
+export const getAllInfoFromCollaboratorService = async () => {
+  const collaboratorData = await CollaboratorView.findAll();
+  return collaboratorData;
 };
 
 export const findAllColaboratorService = async () => {
@@ -25,6 +31,9 @@ export const deleteCollaboratorService = async (id: number) => {
   const deleteCollaborator = await Collaborator.destroy({
     where: { id_collaborator: id },
   });
+  if (deleteCollaborator === 0) {
+    throw new Error("Colaborador no encotrado");
+  }
   const message = "Colaborador eliminado con exito";
-  return message + deleteCollaborator;
+  return message;
 };

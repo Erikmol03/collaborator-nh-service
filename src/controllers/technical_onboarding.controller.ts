@@ -1,30 +1,30 @@
 import { Request, Response } from "express";
 import {
-  createOnboardingService,
-  updateOnboardingService,
-} from "../services/onboarding.service";
+  createTechnicalOnboardingService,
+  updateTechnicalOnboardingService,
+} from "../services/technical_onboarding.service";
 
-export const createOnboardingController = async (
+export const createTechnicalOnboardingController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const createdOnboarding = await createOnboardingService(req.body);
+    const createdOnboarding = await createTechnicalOnboardingService(req.body);
     res.status(201).json(createdOnboarding);
   } catch (error) {
     res.status(400).json({
       message: "Ocurrio un error al procesar la solicitud",
-      error: error.message,
+      error: error,
     });
   }
 };
 
-export const updateOnboardingController = async (
+export const updateTechnicalOnboardingController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const onboardingUpdate = await updateOnboardingService(
+    const onboardingUpdate = await updateTechnicalOnboardingService(
       parseInt(req.params.id),
       req.body
     );
@@ -32,7 +32,7 @@ export const updateOnboardingController = async (
   } catch (error) {
     res.status(400).json({
       message: "Ocurrio un error al procesar la solicitud",
-      error: error.message,
+      error: error,
     });
   }
 };
