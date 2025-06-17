@@ -9,16 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTechnicalOnboardingService = exports.createTechnicalOnboardingService = void 0;
+exports.getTypeTechOnboardingService = void 0;
 const technical_onboarding_model_1 = require("../models/technical_onboarding.model");
-const createTechnicalOnboardingService = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const newOnborading = yield technical_onboarding_model_1.TechnicalOnboarding.create(data);
-    return newOnborading;
+const getTypeTechOnboardingService = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const newOnborading = yield technical_onboarding_model_1.TechnicalOnboarding.findAll();
+        return newOnborading;
+    }
+    catch (error) {
+        console.error("Error no se encontraron tipos de onboardings técnicos");
+    }
 });
-exports.createTechnicalOnboardingService = createTechnicalOnboardingService;
-const updateTechnicalOnboardingService = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
-    yield technical_onboarding_model_1.TechnicalOnboarding.update(data, { where: { id_onboarding: id } });
-    const message = "Estado del onboarding actualizado";
-    return message;
-});
-exports.updateTechnicalOnboardingService = updateTechnicalOnboardingService;
+exports.getTypeTechOnboardingService = getTypeTechOnboardingService;

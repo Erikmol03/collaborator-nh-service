@@ -2,11 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CollaboratorView = void 0;
 const sequelize_1 = require("sequelize");
-const data_base_conection_1 = require("../db/data_base_conection");
+const dataBaseConection_1 = require("../db/dataBaseConection");
 class CollaboratorView extends sequelize_1.Model {
 }
 exports.CollaboratorView = CollaboratorView;
 CollaboratorView.init({
+    id_collaborator: sequelize_1.DataTypes.NUMBER,
     first_name: sequelize_1.DataTypes.STRING,
     last_name: sequelize_1.DataTypes.STRING,
     email: sequelize_1.DataTypes.STRING,
@@ -16,7 +17,7 @@ CollaboratorView.init({
     type_technical_onboarding: sequelize_1.DataTypes.STRING,
     date_technical_onboarding: sequelize_1.DataTypes.DATE,
 }, {
-    sequelize: data_base_conection_1.sequelize,
+    sequelize: dataBaseConection_1.sequelize,
     modelName: "CollaboratorView",
     tableName: "view_collaborators_info",
     timestamps: false,

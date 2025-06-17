@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../db/data_base_conection";
+import { sequelize } from "../db/dataBaseConection";
 
 export class TechnicalOnboardingView
   extends Model<ITechOnboardingDateView>

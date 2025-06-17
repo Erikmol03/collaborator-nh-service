@@ -1,10 +1,11 @@
 interface CollaboratorViewAttributes {
-  first_name: String;
-  last_name: String;
-  email: String;
+  id_collaborator: number;
+  first_name: string;
+  last_name: string;
+  email: string;
   date_entry: Date;
   state_welcome_onboarding: boolean;
-  state_technical_onboarding: Boolean;
-  type_technical_onboarding: String;
-  date_technical_onboarding?: Date;
+  state_technical_onboarding: boolean;
+  type_technical_onboarding: string;
+  date_technical_onboarding?: Date | undefined;
 }

@@ -9,18 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTypeTechOnboardingController = void 0;
-const technical_onboarding_service_1 = require("../services/technical_onboarding.service");
-const getTypeTechOnboardingController = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getTypeTechOnboardingService = void 0;
+const technicalOnboarding_model_1 = require("../models/technicalOnboarding.model");
+const getTypeTechOnboardingService = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const getType = yield (0, technical_onboarding_service_1.getTypeTechOnboardingService)();
-        res.status(201).json(getType);
+        const newOnborading = yield technicalOnboarding_model_1.TechnicalOnboarding.findAll();
+        return newOnborading;
     }
     catch (error) {
-        res.status(400).json({
-            message: "Ocurrio un error al procesar la solicitud",
-            error: error,
-        });
+        console.error("Error no se encontraron tipos de onboardings técnicos", error);
+        throw new Error("No se pudo obtener los tipos de onboarding");
     }
 });
-exports.getTypeTechOnboardingController = getTypeTechOnboardingController;
+exports.getTypeTechOnboardingService = getTypeTechOnboardingService;

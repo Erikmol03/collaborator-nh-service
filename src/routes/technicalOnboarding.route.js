@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const auth_middleware_1 = require("../middleware/auth.middleware");
-const technical_onboarding_controller_1 = require("../controllers/technical_onboarding.controller");
+const technicalOnboarding_controller_1 = require("../controllers/technicalOnboarding.controller");
 const router = express_1.default.Router();
 router.use("tech-onboarding", auth_middleware_1.verifyToken);
-router.post("/tech-onboarding/create", technical_onboarding_controller_1.getTypeTechOnboardingController);
+router.get("/tech-onboarding/get", technicalOnboarding_controller_1.getTypeTechOnboardingController);
 exports.default = router;

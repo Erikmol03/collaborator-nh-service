@@ -16,6 +16,14 @@ TechnicalOnboarding.init({
         type: sequelize_1.DataTypes.TEXT,
         allowNull: false,
     },
+    start_date: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+    },
+    end_date: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+    },
 }, {
     sequelize: dataBaseConection_1.sequelize,
     tableName: "technical_onboarding",

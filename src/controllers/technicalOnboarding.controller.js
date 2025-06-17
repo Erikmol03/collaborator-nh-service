@@ -10,10 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTypeTechOnboardingController = void 0;
-const technical_onboarding_service_1 = require("../services/technical_onboarding.service");
+const technicalOnboarding_service_1 = require("../services/technicalOnboarding.service");
 const getTypeTechOnboardingController = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const getType = yield (0, technical_onboarding_service_1.getTypeTechOnboardingService)();
+        const getType = yield (0, technicalOnboarding_service_1.getTypeTechOnboardingService)();
         res.status(201).json(getType);
     }
     catch (error) {

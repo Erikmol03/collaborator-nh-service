@@ -10,7 +10,7 @@ const router = express_1.default.Router();
 router.use("/collaborator", auth_middleware_1.verifyToken);
 router.post("/collaborator/create", collaborator_controller_1.createCollaboratorController);
 router.get("/collaborator/data", collaborator_controller_1.getAllInfoFromCollaboratorController);
-router.get("/collaborator/find", collaborator_controller_1.findAllColaboratorController);
+router.get("/collaborator/find/:id", collaborator_controller_1.getInfoCollaboratorController);
 router.patch("/collaborator/update/:id", collaborator_controller_1.updateCollaboratorController);
 router.delete("/collaborator/delete/:id", collaborator_controller_1.deleteCollaboratorController);
 exports.default = router;

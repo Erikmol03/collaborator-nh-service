@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   createCollaboratorService,
   getAllInfoFromCollaboratorService,
-  findAllColaboratorService,
+  getInfoCollaboratorService,
   updateCollaboratorService,
   deleteCollaboratorService,
 } from "../services/collaborator.service";
@@ -15,10 +15,8 @@ export const createCollaboratorController = async (
     const newCollaborator = await createCollaboratorService(req.body);
     res.status(201).json(newCollaborator);
   } catch (error) {
-    res.status(400).json({
-      message: "Ocurrio un error al procesar la solicitud",
-      error: error,
-    });
+    console.error("Error en createCollaboratorController:", error);
+    res.status(500).json({ message: "Error al crear colaborador." });
   }
 };
 
@@ -30,25 +28,22 @@ export const getAllInfoFromCollaboratorController = async (
     const collaboratorData = await getAllInfoFromCollaboratorService();
     res.status(200).json(collaboratorData);
   } catch (error) {
-    res.status(404).json({
-      message: "No se encontraron colaboradores",
-      error: error,
-    });
+    console.error("Error en getAllInfoFromCollaboratorController:", error);
+    res.status(500).json({ message: "Error al obtener colaboradores." });
   }
 };
 
-export const findAllColaboratorController = async (
-  _req: Request,
+export const getInfoCollaboratorController = async (
+  req: Request,
   res: Response
 ) => {
+  const id = parseInt(req.params.id);
   try {
-    const collaboratorsFound = await findAllColaboratorService();
-    res.status(200).json(collaboratorsFound);
+    const collaboratorData = await getInfoCollaboratorService(id);
+    res.status(200).json(collaboratorData);
   } catch (error) {
-    res.status(404).json({
-      message: "No se han encontrado colaboradores",
-      error: error,
-    });
+    console.error(`Error al obtener colaborador con ID ${id}:`, error);
+    res.status(404).json({ message: "Colaborador no encontrado." });
   }
 };
 
@@ -56,17 +51,13 @@ export const updateCollaboratorController = async (
   req: Request,
   res: Response
 ) => {
+  const id = parseInt(req.params.id);
   try {
-    const collaboratorUpdate = await updateCollaboratorService(
-      parseInt(req.params.id),
-      req.body
-    );
-    res.status(200).json(collaboratorUpdate);
+    const result = await updateCollaboratorService(id, req.body);
+    res.status(200).json({ message: result });
   } catch (error) {
-    res.status(400).json({
-      message: "Ocurrio un error al procesar la solicitud",
-      error: error,
-    });
+    console.error(`Error al actualizar colaborador con ID ${id}:`, error);
+    res.status(400).json({ message: "Error al actualizar colaborador." });
   }
 };
 
@@ -74,15 +65,14 @@ export const deleteCollaboratorController = async (
   req: Request,
   res: Response
 ) => {
+  const id = parseInt(req.params.id);
   try {
-    const deletedCollaborator = await deleteCollaboratorService(
-      parseInt(req.params.id)
-    );
-    res.status(200).json(deletedCollaborator);
+    const result = await deleteCollaboratorService(id);
+    res.status(200).json({ message: result });
   } catch (error) {
-    res.status(404).json({
-      message: "Ocurrio un error al procesar la solicitud",
-      error: error,
-    });
+    console.error(`Error al eliminar colaborador con ID ${id}:`, error);
+    res
+      .status(404)
+      .json({ message: "Colaborador no encontrado o no se pudo eliminar." });
   }
 };

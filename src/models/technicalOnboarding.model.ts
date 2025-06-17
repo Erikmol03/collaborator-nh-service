@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../db/data_base_conection";
+import { sequelize } from "../db/dataBaseConection";
 
 type TechnicalOnboardingOptionalAttributes = Optional<
   TechnicalOnboardingAttributes,
@@ -13,10 +13,10 @@ export class TechnicalOnboarding
   >
   implements TechnicalOnboardingAttributes
 {
-  public id_onboarding!: number;
-  public state_technical_onboarding!: boolean;
-  public type_technical_onboarding!: string;
-  public date_technical_onboarding?: Date;
+  id_onboarding!: number;
+  type_technical_onboarding!: string;
+  start_date!: Date;
+  end_date!: Date;
 }
 
 TechnicalOnboarding.init(
@@ -26,17 +26,17 @@ TechnicalOnboarding.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    state_technical_onboarding: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
     type_technical_onboarding: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    date_technical_onboarding: {
+    start_date: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
+    },
+    end_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {

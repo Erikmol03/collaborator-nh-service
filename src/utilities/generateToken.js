@@ -7,7 +7,7 @@ exports.generateToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generateToken = () => {
     const payload = {
-        id: "admin",
+        id: "1",
         email: "admin@correo.com.co",
         rol: "Admin",
     };

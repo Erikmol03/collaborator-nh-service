@@ -15,11 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const node_cron_1 = __importDefault(require("node-cron"));
 const mail_service_1 = require("../services/mail.service");
 const collaborator_service_1 = require("../services/collaborator.service");
-node_cron_1.default.schedule("*/5 * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("⏰ Ejecutando tarea de recordatorio...");
-    const sessions = yield (0, collaborator_service_1.getUserToReminderTechOnboarding)();
-    console.log(sessions);
-    for (const session of sessions) {
-        yield (0, mail_service_1.sendTechnicalOnboardingReminder)(session.email, session.date);
+node_cron_1.default.schedule("0 11 * * 2", () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const sessions = yield (0, collaborator_service_1.getUserToReminderTechOnboarding)();
+        for (const session of sessions) {
+            yield (0, mail_service_1.sendTechnicalOnboardingReminder)(session.email, session.date);
+        }
+    }
+    catch (error) {
+        console.error("No se encontraton onboardings técnicos ", error);
     }
 }));

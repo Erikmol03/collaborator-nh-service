@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Collaborator = void 0;
 const sequelize_1 = require("sequelize");
-const data_base_conection_1 = require("../db/data_base_conection");
+const dataBaseConection_1 = require("../db/dataBaseConection");
 class Collaborator extends sequelize_1.Model {
 }
 exports.Collaborator = Collaborator;
@@ -40,4 +40,12 @@ Collaborator.init({
         type: sequelize_1.DataTypes.BOOLEAN,
         defaultValue: false,
     },
-}, { sequelize: data_base_conection_1.sequelize, tableName: "collaborator", timestamps: false });
+    state_technical_onboarding: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    date_technical_onboarding: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: true,
+    },
+}, { sequelize: dataBaseConection_1.sequelize, tableName: "collaborator", timestamps: false });

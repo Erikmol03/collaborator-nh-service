@@ -27,7 +27,8 @@ const sendTechnicalOnboardingReminder = (to, date) => __awaiter(void 0, void 0, 
         console.log("Correo enviado");
     }
     catch (error) {
-        console.error("Error al enviar el correo ", error);
+        console.error("Error al enviar el correo", error);
+        throw new Error("No se ha podido enviar el correo");
     }
 });
 exports.sendTechnicalOnboardingReminder = sendTechnicalOnboardingReminder;

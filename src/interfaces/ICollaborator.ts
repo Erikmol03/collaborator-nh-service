@@ -6,4 +6,6 @@ interface CollaboratorAttributes {
   email: String;
   date_entry: Date;
   state_welcome_onboarding: boolean;
+  state_technical_onboarding: Boolean;
+  date_technical_onboarding?: Date;
 }

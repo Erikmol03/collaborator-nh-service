@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../db/data_base_conection";
+import { sequelize } from "../db/dataBaseConection";
 
 type CollaboratorOptionalAttributes = Optional<
   CollaboratorAttributes,
@@ -17,6 +17,8 @@ export class Collaborator
   email!: String;
   date_entry!: Date;
   state_welcome_onboarding!: boolean;
+  state_technical_onboarding!: Boolean;
+  date_technical_onboarding?: Date;
 }
 
 Collaborator.init(
@@ -53,6 +55,14 @@ Collaborator.init(
     state_welcome_onboarding: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    state_technical_onboarding: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    date_technical_onboarding: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   { sequelize, tableName: "collaborator", timestamps: false }

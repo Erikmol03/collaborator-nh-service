@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const generateToken = () => {
   const payload = {
-    id: "admin",
+    id: "1",
     email: "admin@correo.com.co",
     rol: "Admin",
   };

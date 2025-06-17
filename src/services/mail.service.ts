@@ -17,6 +17,7 @@ export const sendTechnicalOnboardingReminder = async (
     await sgMail.send(message);
     console.log("Correo enviado");
   } catch (error) {
-    console.error("Error al enviar el correo ", error);
+    console.error("Error al enviar el correo", error);
+    throw new Error("No se ha podido enviar el correo");
   }
 };
